@@ -7,7 +7,7 @@ router.route('/signup')
   })
   .post((req, res) => {
     const user = req.body
-    console.log(req.body)
+
     db.create(user)
       .then(() => {
         res.redirect('/login')
@@ -17,6 +17,19 @@ router.route('/signup')
 router.route('/login')
   .get((req, res) => {
     res.render('authentication/login')
+  })
+  .post((req, res) => {
+    const email = req.body.email
+    const password = req.body.password
+
+    db.getUser(email)
+      .then((user) => {
+        if (!user || password !== user.password) {
+          res.redirect('/login')
+        } else {
+          res.redirect('/')
+        }
+      })
   })
 
 module.exports = router
