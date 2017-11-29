@@ -8,7 +8,7 @@ const createUser = (user) => {
 }
 
 const getUserByEmail = (email) => {
-  return db.oneOrNone('SELECT * FROM users WHERE email = $1', [email])
+  return db.oneOrNone('SELECT encrypted_password FROM users WHERE email = $1', email)
     .catch((err) => {
       console.log(err.message)
     })
