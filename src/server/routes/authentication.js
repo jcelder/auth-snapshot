@@ -12,10 +12,6 @@ const encryptUserPassword = (plaintextPassword) => {
     .then((salt) => {
       return bcrypt.hash(plaintextPassword, salt)
     })
-    .then((hash) => {
-      console.log(hash)
-      return hash
-    })
 }
 
 router.route('/signup')
