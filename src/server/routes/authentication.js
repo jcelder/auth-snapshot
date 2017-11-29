@@ -24,7 +24,7 @@ router.route('/login')
 
     db.getUser(email)
       .then((user) => {
-        if (!user || password !== user.password) {
+        if (!user || password !== user.encrypted_password) {
           res.redirect('/login')
         } else {
           res.redirect('/')
