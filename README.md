@@ -10,8 +10,8 @@
 ## Specifications
 
 - Authentication
-  - [ ] Create a signup page with a form (links to the login page)
-  - [ ] Create a login page with a form (links to the signup page)
+  - [x] Create a signup page with a form (links to the login page)
+  - [x] Create a login page with a form (links to the signup page)
   - [ ] Redirect users who are not logged in to the login page (Make sure not logged in users can't see any of the pages or data other than the login and signup pages)
   - [ ] Create a user table in the database
   - [ ] When a user signs up, a new user row is created in the user table
