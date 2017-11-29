@@ -1,0 +1,19 @@
+<%- include ../partials/header.ejs %>
+
+<h1>Log In</h1>
+
+<form action="/signup" method="POST" class="new-contact-form">
+  <label>
+    <span>Email:</span>
+    <input name="email" type="text">
+  </label>
+  <label>
+    <span>Password:</span>
+    <input name="password" type="password">
+  </label>
+  <input type="submit" value="Log In">
+  <a href="/signup">Need an Account? Sign Up Here!</a>
+</form>
+
+
+<%- include ../partials/footer.ejs %>
