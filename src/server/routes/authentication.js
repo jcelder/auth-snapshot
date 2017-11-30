@@ -51,6 +51,7 @@ router.route('/login')
           bcrypt.compare(password, user.encrypted_password)
             .then((isEqual) => {
               if (isEqual) {
+                req.session.email = user.email
                 res.redirect('/')
               } else {
                 res.render('authentication/login', {errors: 'Username or Password Invalid'})
@@ -58,6 +59,12 @@ router.route('/login')
             })
         }
       })
+  })
+
+router.route('/logout')
+  .get((req, res) => {
+    req.session.destroy()
+    res.redirect('/login')
   })
 
 module.exports = router
