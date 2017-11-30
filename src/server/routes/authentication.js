@@ -51,7 +51,7 @@ router.route('/login')
           bcrypt.compare(password, user.encrypted_password)
             .then((isEqual) => {
               if (isEqual) {
-                req.session.sid = email
+                req.session.email = email
                 res.redirect('/')
               } else {
                 res.render('authentication/login', {errors: 'Username or Password Invalid'})
