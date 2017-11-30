@@ -13,10 +13,10 @@
   - [x] Create a signup page with a form (links to the login page)
   - [x] Create a login page with a form (links to the signup page)
   - [ ] Redirect users who are not logged in to the login page (Make sure not logged in users can't see any of the pages or data other than the login and signup pages)
-  - [ ] Create a user table in the database
-  - [ ] When a user signs up, a new user row is created in the user table
+  - [x] Create a user table in the database
+  - [x] When a user signs up, a new user row is created in the user table
   - [ ] When a user logs in, their username and password are validated in the user table. If the username/password combo doesn't exist or is invalid, the user receives an error.
-  - [ ] Passwords are encrypted with `bcrypt`
+  - [x] Passwords are encrypted with `bcrypt`
   - [ ] [express-session][express-session] is used to store sessions on the server side. Notice the differences between storing sessions on client side(using [cookie-session][cookie-session] vs storing sessions on the server side(using `express-session`).
 - Authorization
   - [ ] A user should have a `role` associated to it. The values are `admin` or `regular`.
