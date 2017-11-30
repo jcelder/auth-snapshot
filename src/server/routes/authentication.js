@@ -45,10 +45,17 @@ router.route('/login')
 
     db.getUser(email)
       .then((user) => {
-        if (!user || password !== user.encrypted_password) {
+        if (!user) {
           res.redirect('/login')
         } else {
-          res.redirect('/')
+          bcrypt.compare(password, user.encrypted_password)
+            .then((isEqual) => {
+              if (isEqual) {
+                res.redirect('/')
+              } else {
+                res.redirect('/login')
+              }
+            })
         }
       })
   })
