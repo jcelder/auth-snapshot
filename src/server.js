@@ -1,10 +1,11 @@
 const express = require('express')
 const session = require('express-session')
 const bodyParser = require('body-parser')
-const app = express()
 const methodOverride = require('method-override')
 const routes = require('./server/routes');
 const middlewares = require('./server/middlewares');
+
+const app = express()
 
 const sess = {
   secret: 'secretWord',
