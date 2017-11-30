@@ -4,10 +4,14 @@ const contacts = require('../../models/contacts');
 const authenticationRoutes = require('./authentication')
 const middlewares = require('../middlewares');
 
-router.get('/', (request, response, next) => {
-  contacts.findAll()
-    .then((contacts) => { response.render('contacts/index', { contacts }) })
-    .catch(error => next(error))
+router.get('/', (req, res, next) => {
+  if (req.session.sid) {
+    contacts.findAll()
+      .then((contacts) => { res.render('contacts/index', { contacts }) })
+      .catch(error => next(error))
+  } else {
+    res.redirect('/login')
+  }
 })
 
 router.use('/', authenticationRoutes)
