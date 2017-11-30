@@ -19,3 +19,14 @@ CREATE TABLE "session" (
 )
 WITH (OIDS=FALSE);
 ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+
+CREATE TABLE roles (
+  id SERIAL PRIMARY KEY,
+  role VARCHAR(255) UNIQUE NOT NULL
+);
+
+CREATE TABLE user_roles (
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES users (id),
+  roles_id INT REFERENCES roles (id)
+);
