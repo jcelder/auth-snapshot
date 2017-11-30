@@ -11,7 +11,9 @@ const createUser = (user) => {
 }
 
 const getUserByEmail = (email) => {
-  return db.oneOrNone('SELECT encrypted_password FROM users WHERE email = $1', email)
+  return db.oneOrNone(`SELECT users.encrypted_password, array_agg(user_roles.roles_id) AS "roles"
+                         FROM users JOIN user_roles ON users.id = user_roles.user_id 
+                         WHERE users.email = $1 GROUP BY users.encrypted_password`, email)
     .catch((err) => {
       console.log(err.message)
     })
