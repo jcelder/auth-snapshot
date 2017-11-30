@@ -2,12 +2,16 @@ const express = require('express')
 const session = require('express-session')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
+const pgSession = require('connect-pg-simple')(session)
 const routes = require('./server/routes');
 const middlewares = require('./server/middlewares');
 
 const app = express()
 
 const sess = {
+  store: new pgSession({
+    conString: process.env.DATABASE_URL || 'postgres://localhost:5432/contacts_development'
+  }),
   secret: 'secretWord',
   resave: false,
   saveUninitialized: false,
