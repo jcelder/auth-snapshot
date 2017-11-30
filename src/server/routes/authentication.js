@@ -52,6 +52,7 @@ router.route('/login')
             .then((isEqual) => {
               if (isEqual) {
                 req.session.email = email
+                req.session.roles = user.roles
                 res.redirect('/')
               } else {
                 res.render('authentication/login', {errors: 'Username or Password Invalid'})
