@@ -11,9 +11,15 @@
     <span>Password:</span>
     <input name="password" type="password">
   </label>
+  
+  <% if (locals.errors) { %>
+    <p class="new-contact-form-errors"><%= locals.errors %></p>
+ <% } %>
+  
   <input type="submit" value="Log In">
   <a href="/signup">Need an Account? Sign Up Here!</a>
 </form>
+
 
 
 <%- include ../partials/footer.ejs %>
