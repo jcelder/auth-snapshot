@@ -5,7 +5,7 @@ const authenticationRoutes = require('./authentication')
 const middlewares = require('../middlewares');
 
 router.get('/', (req, res, next) => {
-  if (req.session.sid) {
+  if (req.session.email) {
     contacts.findAll()
       .then((contacts) => { res.render('contacts/index', { contacts }) })
       .catch(error => next(error))
