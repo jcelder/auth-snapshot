@@ -15,6 +15,9 @@ router.get('/', (req, res, next) => {
 })
 
 router.use('/', authenticationRoutes)
+
+router.use('/new', middlewares.checkRoles)
+router.use('/:contactId', middlewares.checkRoles)
 router.use('/contacts', contactsRoutes);
 
 router.use(middlewares.logErrors);
