@@ -20,7 +20,7 @@ const checkRoles = (req, res, next) => {
   if (req.session.roles.includes(1)) {
     next()
   } else {
-    res.render('common/forbidden')
+    res.status(403).render('common/forbidden')
   }
 }
 
