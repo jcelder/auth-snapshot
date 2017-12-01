@@ -1,19 +1,19 @@
 const contacts = require('../../models/contacts')
 const router = require('express').Router()
 
-// const checkRoles = (request, response, next) => {
-//   if (!(request.session.roles.includes(1))) {
-//     return response.render('common/forbidden')
-//   }
-//   next()
-// }
+const checkRoles = (req, res, next) => {
+  if (req.session.roles.includes(1)) {
+    next()
+  } else {
+    res.render('common/forbidden')
+  }
+}
+
+router.use('/new', checkRoles)
+router.use('/:contactId', checkRoles)
 
 router.get('/new', (request, response) => {
-  // checkRoles(request, response)
-  if (request.session.roles.includes(1)) {
-    return response.render('contacts/new')
-  }
-  response.render('common/forbidden')
+  return response.render('contacts/new')
 })
 
 router.post('/', (request, response, next) => {
@@ -38,17 +38,13 @@ router.get('/:contactId', (request, response, next) => {
 
 
 router.delete('/:contactId', (request, response, next) => {
-  if (request.session.roles.includes(1)) {
-    const contactId = request.params.contactId
-    contacts.destroy(contactId)
-      .then(function(contact) {
-        if (contact) return response.redirect('/')
-        next()
-      })
-      .catch( error => next(error) )
-  } else {
-    response.render('common/forbidden')
-  }
+  const contactId = request.params.contactId
+  contacts.destroy(contactId)
+    .then(function(contact) {
+      if (contact) return response.redirect('/')
+      next()
+    })
+    .catch( error => next(error) )
 })
 
 router.get('/search', (request, response, next) => {
