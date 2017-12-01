@@ -1,17 +1,6 @@
 const contacts = require('../../models/contacts')
 const router = require('express').Router()
 
-const checkRoles = (req, res, next) => {
-  if (req.session.roles.includes(1)) {
-    next()
-  } else {
-    res.render('common/forbidden')
-  }
-}
-
-router.use('/new', checkRoles)
-router.use('/:contactId', checkRoles)
-
 router.get('/new', (request, response) => {
   return response.render('contacts/new')
 })

@@ -16,4 +16,12 @@ const setDefaultResponseLocals = (request, response, next) => {
   next()
 }
 
-module.exports = { errorHandler, logErrors, notFoundHandler, setDefaultResponseLocals };
+const checkRoles = (req, res, next) => {
+  if (req.session.roles.includes(1)) {
+    next()
+  } else {
+    res.render('common/forbidden')
+  }
+}
+
+module.exports = { errorHandler, logErrors, notFoundHandler, setDefaultResponseLocals, checkRoles };
