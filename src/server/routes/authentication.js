@@ -9,9 +9,9 @@ const bcrypt = require('bcrypt')
  */
 const encryptUserPassword = (plaintextPassword) => {
   return bcrypt.genSalt(10)
-    .then((salt) => {
-      return bcrypt.hash(plaintextPassword, salt)
-    })
+  .then((salt) => {
+    return bcrypt.hash(plaintextPassword, salt)
+  })
 }
 
 router.route('/signup')
@@ -23,16 +23,16 @@ router.route('/signup')
     const plaintextPassword = req.body.password
 
     encryptUserPassword(plaintextPassword)
-      .then((hash) => {
-        const newUser = {
-          email: email,
-          encrypted_password: hash,
-        }
-        db.create(newUser)
-          .then(() => {
-            res.redirect('/login')
-          })
+    .then((hash) => {
+      const newUser = {
+        email: email,
+        encrypted_password: hash,
+      }
+      db.create(newUser)
+      .then(() => {
+        res.redirect('/login')
       })
+    })
   })
 
 router.route('/login')
@@ -44,22 +44,22 @@ router.route('/login')
     const password = req.body.password
 
     db.getUser(email)
-      .then((user) => {
-        if (!user) {
-          res.render('authentication/login', {errors: 'Username or Password Invalid'})
-        } else {
-          bcrypt.compare(password, user.encrypted_password)
-            .then((isEqual) => {
-              if (isEqual) {
-                req.session.email = email
-                req.session.roles = user.roles
-                res.redirect('/')
-              } else {
-                res.render('authentication/login', {errors: 'Username or Password Invalid'})
-              }
-            })
-        }
-      })
+    .then((user) => {
+      if (!user) {
+        res.render('authentication/login', {errors: 'Username or Password Invalid'})
+      } else {
+        bcrypt.compare(password, user.encrypted_password)
+        .then((isEqual) => {
+          if (isEqual) {
+            req.session.email = email
+            req.session.roles = user.roles
+            res.redirect('/')
+          } else {
+            res.render('authentication/login', {errors: 'Username or Password Invalid'})
+          }
+        })
+      }
+    })
   })
 
 router.route('/logout')

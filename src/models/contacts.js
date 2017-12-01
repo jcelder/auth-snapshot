@@ -1,6 +1,5 @@
 const db = require('./db/contacts');
 
-
 // additional functions which operate on `contacts` data will go here
 
 module.exports = {

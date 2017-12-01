@@ -2,6 +2,9 @@ const contacts = require('../../models/contacts')
 const router = require('express').Router()
 
 router.get('/new', (request, response) => {
+  // this is totally preference but I usually only include a return for my
+  // reposnse if it's within a conditional or not at all. But doesn't affect
+  // functionality
   return response.render('contacts/new')
 })
 
