@@ -10,9 +10,10 @@ const createUser = (user) => {
     })
 }
 
+// not sure why the formatting is as is below
 const getUserByEmail = (email) => {
   return db.oneOrNone(`SELECT users.encrypted_password, array_agg(user_roles.roles_id) AS "roles"
-                         FROM users JOIN user_roles ON users.id = user_roles.user_id 
+                         FROM users JOIN user_roles ON users.id = user_roles.user_id
                          WHERE users.email = $1 GROUP BY users.encrypted_password`, email)
     .catch((err) => {
       console.log(err.message)

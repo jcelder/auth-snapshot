@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       event.preventDefault()
     }
   }
-
+// is this leading semicolon to prevent errors? I usually only see this
+// syntax with IIFE security.
   ;[].forEach.call(document.querySelectorAll('.delete-contact'), function(link){
     link.addEventListener("click", confirmDelete)
   })
